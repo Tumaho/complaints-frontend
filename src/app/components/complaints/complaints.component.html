@@ -2,10 +2,10 @@
     <div><a href="#" target="_blank" class="positronx">Complaints Project</a></div>
     <div><a href="#" target="_blank" class="positronx">Hello {{userName}}</a></div>
     <span class="nav-tool-items">
-      <a mat-button mat-raised-button (click)="logout()">Logout</a>
+        <a mat-button mat-raised-button (click)="logout()">Logout</a>
     </span>
-    
-  </mat-toolbar>
+
+</mat-toolbar>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 75%;
 margin-top: 15em;
@@ -17,7 +17,7 @@ margin-top: 15em;
         <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
     </ng-container>
 
-    <!-- ComplaintTitle Column -->
+    <!-- ComplaintType Column -->
     <ng-container matColumnDef="complaintType">
         <th mat-header-cell *matHeaderCellDef> Complaint Type </th>
         <td mat-cell *matCellDef="let element"> {{element.compType}} </td>
@@ -37,24 +37,26 @@ margin-top: 15em;
         </td>
     </ng-container>
 
-
+    <!-- Date Column -->
     <ng-container matColumnDef="creationDate">
         <th mat-header-cell *matHeaderCellDef> Creation Date </th>
         <td mat-cell *matCellDef="let element"> {{element.createdDate | date:'medium'}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="update" >
+    <!-- Update Status Column -->
+    <ng-container matColumnDef="update">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element" > <img *ngIf="!isCustomer"
-            src="../../../assets/write-pen.svg" style="cursor:pointer" (click)="updateStatus(element)"></td>
+        <td mat-cell *matCellDef="let element"> <img *ngIf="!isCustomer" src="../../../assets/write-pen.svg"
+                style="cursor:pointer" (click)="updateStatus(element)"></td>
     </ng-container>
 
-    <ng-container matColumnDef="delete" >
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element" > <img *ngIf="isCustomer"
-            src="../../../assets/delete-icon.svg" style="cursor:pointer" (click)="delete(element._id)"></td>
+        <td mat-cell *matCellDef="let element"> <img *ngIf="isCustomer" src="../../../assets/delete-icon.svg"
+                style="cursor:pointer" (click)="delete(element._id)"></td>
     </ng-container>
-    
+
 
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

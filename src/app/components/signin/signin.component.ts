@@ -14,10 +14,10 @@ import { Router } from '@angular/router';
 export class SigninComponent implements OnInit {
 
   localUrl = 'http://localhost:8080/api/user/login';
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-
 
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar, private mainService: MainService, private router: Router) { }

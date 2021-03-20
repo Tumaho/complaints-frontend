@@ -14,9 +14,10 @@ export class RegisterComponent implements OnInit {
 
   User: any = ['Admin', 'Customer'];
 
-  selectedRole: any="";
+  selectedRole: any = "";
 
   localUrl = 'http://localhost:8080/api/user/register';
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -27,14 +28,14 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(e: any) {
-    if(e.target.name.value=="" || e.target.name.value=="" || e.target.password.value==""||e.target.rePassword.value==""||this.selectedRole==""){
-      let snackBarRef = this.snackBar.open('Inputs must filled', 'ok',{
+    if (e.target.name.value == "" || e.target.name.value == "" || e.target.password.value == "" || e.target.rePassword.value == "" || this.selectedRole == "") {
+      let snackBarRef = this.snackBar.open('Inputs must filled', 'ok', {
         duration: 2000,
       });
     }
 
     else if (!(e.target.password.value == e.target.rePassword.value)) {
-      let snackBarRef = this.snackBar.open('Password not matching', 'ok',{
+      let snackBarRef = this.snackBar.open('Password not matching', 'ok', {
         duration: 2000,
       });
     }
@@ -50,12 +51,12 @@ export class RegisterComponent implements OnInit {
         this.httpOptions
       ).subscribe(data => {
 
-        let snackBarRef = this.snackBar.open('User Registred Successully', 'ok',{
+        let snackBarRef = this.snackBar.open('User Registred Successully', 'ok', {
           duration: 2000,
         });
         this.router.navigateByUrl('/signin');
       }, error => {
-        let snackBarRef = this.snackBar.open('something goes wrong', 'ok',{
+        let snackBarRef = this.snackBar.open('something goes wrong', 'ok', {
           duration: 2000,
         });
 
@@ -69,6 +70,6 @@ export class RegisterComponent implements OnInit {
   changeRole(e: any) {
     this.selectedRole = e;
   }
-  
+
 
 }
