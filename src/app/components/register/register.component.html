@@ -1,0 +1,50 @@
+<mat-toolbar color="primary" class="app-header">
+  <div><a href="#" target="_blank" class="positronx">Complaints Project</a></div>
+  <span class="nav-tool-items">
+    <a mat-button routerLink="/signin" routerLinkActive="active" >Signin</a>
+    <a mat-button mat-raised-button routerLink="/register" routerLinkActive="active">Signup</a>
+  </span>
+</mat-toolbar>
+
+
+
+<div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+      </mat-card-header>
+  
+      <form class="signin-form" (submit)="onSubmit($event)">
+  
+        <mat-card-content>
+          <mat-form-field class="input-field">
+            <input matInput placeholder="Full Name" name="name" required>
+          </mat-form-field>
+  
+          <mat-form-field class="input-field">
+            <input matInput placeholder="Email" name="email" required>
+          </mat-form-field>
+  
+          <mat-form-field class="input-field">
+            <input matInput placeholder="Password" name="password" type="password" required>
+          </mat-form-field>
+
+          <mat-form-field class="input-field">
+            <input matInput placeholder="Confirm Password" name="rePassword" type="password" required>
+          </mat-form-field>
+  
+          <mat-form-field class="input-field">
+            <mat-label>Choose role</mat-label>
+            <mat-select (selectionChange)="changeRole($event.value)">
+              <mat-option  [value]="user" *ngFor="let user of User">{{user}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+        </mat-card-content>
+  
+        <button mat-stroked-button color="accent" class="btn-block">Register</button>
+  
+      </form>
+    </mat-card>
+  </div>

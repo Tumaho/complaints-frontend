@@ -1,0 +1,21 @@
+<div class="center">
+    <form class="example-form" (submit)="onSubmit($event)">
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Complaint</mat-label>
+            <textarea matInput name="complaint" required></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Complaint Type</mat-label>
+            <mat-select (selectionChange)="changeType($event.value)">
+              <mat-option  [value]="type" *ngFor="let type of types">{{type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" style="margin-left: 16em;
+        margin-top: 5em;">Submit</button>
+    </form>
+
+</div>

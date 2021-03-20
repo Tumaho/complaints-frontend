@@ -1,0 +1,16 @@
+<div class="center">
+    <form class="example-form" (submit)="onSubmit($event)">
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Complaint Status</mat-label>
+            <mat-select (selectionChange)="changeStatus($event.value)">
+              <mat-option  [value]="Status" *ngFor="let Status of status">{{Status}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" style="margin-left: 6em;
+        margin-top: 4em;">Update</button>
+    </form>
+
+</div>
