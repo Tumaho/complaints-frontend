@@ -14,13 +14,15 @@ import { UpdateStatusComponent } from '../update-status/update-status.component'
 })
 export class ComplaintsComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'complaint', 'complaintType', 'creationDate', 'status', 'update','delete'];
+  displayedColumns: string[] = ['id', 'complaint', 'complaintType', 'creationDate', 'status', 'update', 'delete'];
   dataSource!: MatTableDataSource<any>;
   role: any = localStorage.getItem("userRole");
   userId: any = localStorage.getItem("userId");
   userName: any = localStorage.getItem("userName");
   isCustomer: Boolean = false;
-  constructor(private router: Router, private http: HttpClient, public dialog: MatDialog,private snackBar: MatSnackBar) { }
+
+
+  constructor(private router: Router, private http: HttpClient, public dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     if (this.role == "Customer") {
@@ -35,7 +37,7 @@ export class ComplaintsComponent implements OnInit {
 
   httpOptions = {
     headers: new HttpHeaders({ 'auth-token': localStorage.getItem("token") || "" }),
-    headers1: new HttpHeaders({responseType: 'text'})
+    headers1: new HttpHeaders({ responseType: 'text' })
   };
 
   logout() {
@@ -50,14 +52,12 @@ export class ComplaintsComponent implements OnInit {
   async getComplaint() {
     await this.http.get<any[]>('http://localhost:8080/api/comp', this.httpOptions).subscribe((comp: any) => {
       this.dataSource = new MatTableDataSource(comp.data)
-      console.log(this.dataSource)
     })
   }
 
   async getComplaintById(id: any) {
     await this.http.get<any[]>('http://localhost:8080/api/comp/' + id, this.httpOptions).subscribe((comp: any) => {
       this.dataSource = new MatTableDataSource(comp.data)
-      console.log(this.dataSource)
     })
   }
 
@@ -73,7 +73,7 @@ export class ComplaintsComponent implements OnInit {
       else if (this.role == "Admin") {
         this.getComplaint();
       }
-      let snackBarRef = this.snackBar.open('Complaint Added', 'ok',{
+      let snackBarRef = this.snackBar.open('Complaint Added', 'ok', {
         duration: 2000,
       });
     })
@@ -82,8 +82,6 @@ export class ComplaintsComponent implements OnInit {
 
 
   updateStatus(element: any) {
-    console.log("ELEMENT : ", element._id);
-
     this.dialog.open(UpdateStatusComponent, {
       height: '200px',
       width: '300px',
@@ -98,23 +96,22 @@ export class ComplaintsComponent implements OnInit {
       else if (this.role == "Admin") {
         this.getComplaint();
       }
-      let snackBarRef = this.snackBar.open('Status Updated', 'ok',{
+      let snackBarRef = this.snackBar.open('Status Updated', 'ok', {
         duration: 2000,
       });
     })
   }
 
 
-  async delete(id:string){
-    await this.http.delete<any>('http://localhost:8080/api/comp/'+id,this.httpOptions).subscribe(res=>
-    {
+  async delete(id: string) {
+    await this.http.delete<any>('http://localhost:8080/api/comp/' + id, this.httpOptions).subscribe(res => {
       if (this.role == "Customer") {
         this.getComplaintById(this.userId);
       }
       else if (this.role == "Admin") {
         this.getComplaint();
       }
-      let snackBarRef = this.snackBar.open('Complaint Deleted', 'ok',{
+      let snackBarRef = this.snackBar.open('Complaint Deleted', 'ok', {
         duration: 2000,
       });
     })
